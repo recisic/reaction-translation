@@ -1,5 +1,6 @@
 data/
 examples/
+old/
 .ipynb_checkpoints/
 *.pkl.gz
 
