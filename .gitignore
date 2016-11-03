@@ -3,5 +3,6 @@ examples/
 old/
 checkpoint/
 .ipynb_checkpoints/
+gen_rxn/data/
 
 *.pkl.gz
