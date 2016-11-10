@@ -4,5 +4,6 @@ old/
 checkpoint/
 .ipynb_checkpoints/
 gen_rxn/data/
+paper/
 
 *.pkl.gz
