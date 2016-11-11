@@ -90,6 +90,8 @@ with gzip.open('data/train(gen_rxn).pkl.gz', 'rb') as train_file: # (gen_rxn)
 
 train_set_size = sum([len(t) for t in train_set])
 print("train_set size:", [len(t) for t in train_set], train_set_size)
+save_step = train_set_size / FLAGS.batch_size
+print("saving every", save_step)
 
 def create_model(session, forward_only):
     model = seq2seq_model.Seq2SeqModel(
@@ -122,6 +124,9 @@ def train():
         step_time, loss = 0.0, 0.0
         current_step = 0
         previous_losses = []
+
+        bar = progressbar.ProgressBar(max_value=FLAGS.steps_per_checkpoint)
+
         while True:
             
             random_number_01 = np.random.random_sample()
@@ -137,9 +142,13 @@ def train():
             step_time += (time.time() - start_time) / FLAGS.steps_per_checkpoint
             loss += step_loss / FLAGS.steps_per_checkpoint
             current_step += 1
+            bar.update(current_step % FLAGS.steps_per_checkpoint)
 
             # Checkpoint and evaluation
             if current_step % FLAGS.steps_per_checkpoint == 0:
+            	bar.finish()
+            	bar = progressbar.ProgressBar(max_value=FLAGS.steps_per_checkpoint)
+
                  # Print statistics for the previous epoch.
                 perplexity = math.exp(loss) if loss < 300 else float('inf')
                 print ("global step %d learning rate %.4f step-time %.2f perplexity "
@@ -156,14 +165,14 @@ def train():
                 # Run evals on development set and print their perplexity.
                 for bucket_id in xrange(len(_buckets)):
                     if len(dev_set[bucket_id]) == 0:
-                        print("   eval: empty bucket %d" % (bucket_id))
+                        print("    eval: empty bucket %d" % (bucket_id))
                         continue
                     encoder_inputs, decoder_inputs, target_weights = model.get_batch(
                         dev_set, bucket_id)
                     _, eval_loss, _ = model.step(sess, encoder_inputs, decoder_inputs,
                                                     target_weights, bucket_id, True)
                     eval_ppx = math.exp(eval_loss) if eval_loss < 300 else float('inf')
-                    print("   eval: bucket %d perplexity %.4f" % (bucket_id, eval_ppx))
+                    print("    eval: bucket %d perplexity %.4f" % (bucket_id, eval_ppx))
 
                     if len(dev_gen_set[bucket_id]) == 0:
                         print("gen_eval: empty bucket %d" % (bucket_id))
@@ -175,7 +184,7 @@ def train():
                     eval_ppx = math.exp(eval_loss) if eval_loss < 300 else float('inf')
                     print("gen_eval: bucket %d perplexity %.4f" %(bucket_id, eval_ppx))
 
-            if current_step % (train_set_size / FLAGS.batch_size) == 0:
+            if current_step % save_step == 0:
             	checkpoint_path = os.path.join(FLAGS.train_dir, "trained_models",
             									"gen.ckpt")
             	model.saver.save(sess, checkpoint_path, global_step=model.global_step)
