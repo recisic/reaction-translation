@@ -90,8 +90,8 @@ with gzip.open('data/train(gen_rxn).pkl.gz', 'rb') as train_file: # (gen_rxn)
 
 train_set_size = sum([len(t) for t in train_set])
 print("train_set size:", [len(t) for t in train_set], train_set_size)
-save_step = train_set_size / FLAGS.batch_size
-print("saving every", save_step)
+save_step = int(train_set_size / FLAGS.batch_size)
+print("saving every", save_step, "steps")
 
 def create_model(session, forward_only):
     model = seq2seq_model.Seq2SeqModel(
