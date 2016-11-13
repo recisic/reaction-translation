@@ -4,6 +4,7 @@ import math, os, random, sys, time
 import cPickle, gzip
 import progressbar
 import pprint
+import shutil
 
 import numpy as np
 from six.moves import xrange
@@ -24,8 +25,8 @@ flags.DEFINE_integer("batch_size", 64,
                             "Batch size to use during training.")
 flags.DEFINE_integer("size", 600, "Size of each model layer.")
 flags.DEFINE_integer("num_layers", 3, "Number of layers in the model.")
-flags.DEFINE_integer("reactant_vocab_size", 326, "Reactant vocabulary size.")
-flags.DEFINE_integer("product_vocab_size", 197, "Product vocabulary size.")
+flags.DEFINE_integer("reactant_vocab_size", 311, "Reactant vocabulary size.")
+flags.DEFINE_integer("product_vocab_size", 180, "Product vocabulary size.")
 flags.DEFINE_string("train_dir", "checkpoint", "Training directory.")
 flags.DEFINE_integer("max_train_data_size", 0,
                             "Limit on the size of training data (0: no limit).")
@@ -185,9 +186,9 @@ def train():
                     print("gen_eval: bucket %d perplexity %.4f" %(bucket_id, eval_ppx))
 
             if current_step % save_step == 0:
-            	checkpoint_path = os.path.join(FLAGS.train_dir, "trained_models",
-            									"gen.ckpt")
+            	checkpoint_path = os.path.join(FLAGS.train_dir, "gen.ckpt")
             	model.saver.save(sess, checkpoint_path, global_step=model.global_step)
-
+            	for fname in glob.glob(os.path.join(FLAGS.train_dir, "gen.ckpt*")):
+   					shutil.copy2(fname, os.path.join(FLAGS.train_dir, "trained_models"))
 
 train()
