@@ -4,7 +4,7 @@ import math, os, random, sys, time
 import cPickle, gzip
 import progressbar
 import pprint
-import shutil
+import glob, shutil
 
 import numpy as np
 from six.moves import xrange
@@ -188,7 +188,7 @@ def train():
             if current_step % save_step == 0:
             	checkpoint_path = os.path.join(FLAGS.train_dir, "gen.ckpt")
             	model.saver.save(sess, checkpoint_path, global_step=model.global_step)
-            	for fname in glob.glob(os.path.join(FLAGS.train_dir, "gen.ckpt*")):
+            	for fname in glob.iglob(os.path.join(FLAGS.train_dir, "gen.ckpt*")):
    					shutil.copy2(fname, os.path.join(FLAGS.train_dir, "trained_models"))
 
 train()
