@@ -3,40 +3,47 @@ from __future__ import absolute_import, division, print_function
 import math, os, random, sys, time
 import cPickle, gzip
 import progressbar
+import pprint
+import glob, shutil
 
 import numpy as np
 from six.moves import xrange
 import tensorflow as tf
 
-from rdkit.Chem import AllChem
-import parser.Smipar as Smipar
-
 from tensorflow.models.rnn.translate import data_utils
 from tensorflow.models.rnn.translate import seq2seq_model
 
+from rdkit import Chem
+from rdkit.Chem import AllChem
+import parser.Smipar as Smipar
 
-tf.app.flags.DEFINE_float("learning_rate", 0.5, "Learning rate.")
-tf.app.flags.DEFINE_float("learning_rate_decay_factor", 0.99,
+
+pp = pprint.PrettyPrinter()
+flags = tf.app.flags
+
+flags.DEFINE_float("learning_rate", 0.5, "Learning rate.")
+flags.DEFINE_float("learning_rate_decay_factor", 0.99,
                           "Learning rate decays by this much.")
-tf.app.flags.DEFINE_float("max_gradient_norm", 5.0,
+flags.DEFINE_float("max_gradient_norm", 5.0,
                           "Clip gradients to this norm.")
-tf.app.flags.DEFINE_integer("batch_size", 64,
+flags.DEFINE_integer("batch_size", 64,
                             "Batch size to use during training.")
-tf.app.flags.DEFINE_integer("size", 600, "Size of each model layer.")
-tf.app.flags.DEFINE_integer("num_layers", 3, "Number of layers in the model.")
-tf.app.flags.DEFINE_integer("reactant_vocab_size", 326, "Reactant vocabulary size.")
-tf.app.flags.DEFINE_integer("product_vocab_size", 197, "Product vocabulary size.")
-tf.app.flags.DEFINE_string("train_dir", "checkpoint/trained_models", "Training dir.")
-tf.app.flags.DEFINE_integer("max_train_data_size", 0,
+flags.DEFINE_integer("size", 600, "Size of each model layer.")
+flags.DEFINE_integer("num_layers", 3, "Number of layers in the model.")
+flags.DEFINE_integer("reactant_vocab_size", 311, "Reactant vocabulary size.")
+flags.DEFINE_integer("product_vocab_size", 180, "Product vocabulary size.")
+flags.DEFINE_string("train_dir", "checkpoint/trained_models", "Training dir.")
+flags.DEFINE_integer("max_train_data_size", 0,
                             "Limit on the size of training data (0: no limit).")
-tf.app.flags.DEFINE_integer("steps_per_checkpoint", 200,
+flags.DEFINE_integer("steps_per_checkpoint", 1000,
                             "How many training steps to do per checkpoint.")
-tf.app.flags.DEFINE_boolean("decode", False,
+flags.DEFINE_boolean("decode", False,
                             "Set to True for interactive decoding.")
-tf.app.flags.DEFINE_boolean("self_test", False,
+flags.DEFINE_boolean("self_test", False,
                             "Run a self-test if this is set to True.")
 
-FLAGS = tf.app.flags.FLAGS
+FLAGS = flags.FLAGS
+pp.pprint(flags.FLAGS.__flags)
 
 _buckets = [(54, 54), (70, 60), (90, 65), (150, 80)]
 
@@ -61,25 +68,27 @@ def create_model(session, forward_only):
     session.run(tf.initialize_all_variables())
   return model
 
+def cano(smiles): # canonicalize smiles by MolToSmiles function
+    return Chem.MolToSmiles(Chem.MolFromSmiles(smiles)) if (smiles != '') else ''
 
 def decode():
   with tf.Session() as sess:
     # Create model and load parameters.
     model = create_model(sess, True)
-    model.batch_size = 1  # We decode one sentence at a time.
+    model.batch_size = 1
 
     # Decode from standard input.
     sys.stdout.write("> ")
     sys.stdout.flush()
     rsmi = sys.stdin.readline()
+    
     while rsmi:
-      # Get token-ids for the input sentence.
       reactant_list = []
       agent_list = []
       split_rsmi = rsmi.split('>')
-      reactants = split_rsmi[0].split('.')
-      agents = split_rsmi[1].split('.')
-      # TODO: remove mapping and normalize before process
+      reactants = cano(split_rsmi[0]).split('.')
+      agents = cano(split_rsmi[1]).split('.')
+
       for reactant in reactants:
         reactant_list += Smipar.parser_list(reactant)
         reactant_list += '.'

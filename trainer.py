@@ -30,7 +30,7 @@ flags.DEFINE_integer("product_vocab_size", 180, "Product vocabulary size.")
 flags.DEFINE_string("train_dir", "checkpoint", "Training directory.")
 flags.DEFINE_integer("max_train_data_size", 0,
                             "Limit on the size of training data (0: no limit).")
-flags.DEFINE_integer("steps_per_checkpoint", 200,
+flags.DEFINE_integer("steps_per_checkpoint", 1000,
                             "How many training steps to do per checkpoint.")
 flags.DEFINE_boolean("decode", False,
                             "Set to True for interactive decoding.")
