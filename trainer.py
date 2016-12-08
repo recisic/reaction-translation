@@ -77,7 +77,7 @@ with gzip.open('data/dev(gen_rxn).pkl.gz', 'rb') as dev_file:
 print("dev_gen_set size:", [len(d) for d in dev_gen_set],
 							sum([len(d) for d in dev_gen_set]))
 
-with gzip.open('data/train(gen_rxn).pkl.gz', 'rb') as train_file: # (gen_rxn)
+with gzip.open('data/train(all).pkl.gz', 'rb') as train_file: # (gen_rxn)
     while 1:
         try:
             reactants, products = cPickle.load(train_file)

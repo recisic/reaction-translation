@@ -10,8 +10,13 @@ import numpy as np
 from six.moves import xrange
 import tensorflow as tf
 
+import matplotlib
+import matplotlib.pyplot as plt
+
+from sklearn.manifold import TSNE
+
 from tensorflow.models.rnn.translate import data_utils
-from tensorflow.models.rnn.translate import seq2seq_model
+import seq2seq_model
 
 from rdkit import Chem
 from rdkit.Chem import AllChem
@@ -32,7 +37,7 @@ flags.DEFINE_integer("size", 600, "Size of each model layer.")
 flags.DEFINE_integer("num_layers", 3, "Number of layers in the model.")
 flags.DEFINE_integer("reactant_vocab_size", 311, "Reactant vocabulary size.")
 flags.DEFINE_integer("product_vocab_size", 180, "Product vocabulary size.")
-flags.DEFINE_string("train_dir", "checkpoint/trained_models", "Training dir.")
+flags.DEFINE_string("train_dir", "checkpoint/saved_models", "Training dir.")
 flags.DEFINE_integer("max_train_data_size", 0,
                             "Limit on the size of training data (0: no limit).")
 flags.DEFINE_integer("steps_per_checkpoint", 1000,
@@ -77,6 +82,23 @@ def decode():
     model = create_model(sess, True)
     model.batch_size = 1
 
+    enc_embed = 'embedding_attention_seq2seq/RNN/EmbeddingWrapper/embedding:0'
+    dec_embed = 'embedding_attention_seq2seq/embedding_attention_decoder/embedding:0'
+    e, d = sess.run([enc_embed, dec_embed])
+    print(e.shape, d.shape)
+    #plt.imshow(e, interpolation='nearest')
+    # t-SNE visualization
+    plt.figure(figsize=(18, 18))
+    ptns = 50 # plotting numbers
+    tsne = TSNE(perplexity=50, n_components=2, init='pca', n_iter=5000)
+    e_2d = tsne.fit_transform(e)
+    for i, label in enumerate(reactants_token_list[:ptns]):
+      x, y = e_2d[i, :]
+      plt.scatter(x, y)
+      plt.annotate(label, xy=(x, y), xytext=(5, 2), textcoords='offset points',
+                    ha='right', va='bottom')
+    #plt.show()
+
     # Decode from standard input.
     sys.stdout.write("> ")
     sys.stdout.flush()
@@ -107,7 +129,7 @@ def decode():
       encoder_inputs, decoder_inputs, target_weights = model.get_batch(
           {bucket_id: [(token_ids, [])]}, bucket_id)
       # Get output logits for the sentence.
-      _, _, output_logits = model.step(sess, encoder_inputs, decoder_inputs,
+      attn, _, output_logits = model.step(sess, encoder_inputs, decoder_inputs,
                                        target_weights, bucket_id, True)
       # This is a greedy decoder - outputs are just argmaxes of output_logits.
       outputs = [int(np.argmax(logit, axis=1)) for logit in output_logits]
@@ -117,11 +139,16 @@ def decode():
       # Print out the reaction smiles
       products = ''.join([tf.compat.as_str(products_token_list[output])
       											for output in outputs])
+
+      attn_matrix = np.squeeze(np.stack(attn))
+      print(attn_matrix.shape)
+      plt.imshow(attn_matrix, interpolation='nearest')
+      plt.show()
+
       print(products)
       print("> ", end="")
       sys.stdout.flush()
       rsmi = sys.stdin.readline()
-
 
 def main(_):
 	decode()
