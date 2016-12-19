@@ -191,4 +191,9 @@ def train():
             	for fname in glob.iglob(os.path.join(FLAGS.train_dir, "gen.ckpt*")):
    					shutil.copy2(fname, os.path.join(FLAGS.train_dir, "trained_models"))
 
-train()
+
+def main(_):
+	train()
+
+if __name__ == "__main__":
+	tf.app.run()

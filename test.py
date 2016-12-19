@@ -11,6 +11,7 @@ from six.moves import xrange
 import tensorflow as tf
 
 import matplotlib
+matplotlib.use('pdf')
 import matplotlib.pyplot as plt
 
 from sklearn.manifold import TSNE
@@ -86,18 +87,10 @@ def decode():
     dec_embed = 'embedding_attention_seq2seq/embedding_attention_decoder/embedding:0'
     e, d = sess.run([enc_embed, dec_embed])
     print(e.shape, d.shape)
-    #plt.imshow(e, interpolation='nearest')
-    # t-SNE visualization
-    plt.figure(figsize=(18, 18))
-    ptns = 50 # plotting numbers
-    tsne = TSNE(perplexity=50, n_components=2, init='pca', n_iter=5000)
-    e_2d = tsne.fit_transform(e)
-    for i, label in enumerate(reactants_token_list[:ptns]):
-      x, y = e_2d[i, :]
-      plt.scatter(x, y)
-      plt.annotate(label, xy=(x, y), xytext=(5, 2), textcoords='offset points',
-                    ha='right', va='bottom')
-    #plt.show()
+
+    with open('embedding.pkl', 'w') as f:
+      cPickle.dump((e, d), f, 2)
+    # plt.imshow(e, interpolation='nearest')
 
     # Decode from standard input.
     sys.stdout.write("> ")
@@ -139,13 +132,14 @@ def decode():
       # Print out the reaction smiles
       products = ''.join([tf.compat.as_str(products_token_list[output])
       											for output in outputs])
+      print(products)
 
       attn_matrix = np.squeeze(np.stack(attn))
       print(attn_matrix.shape)
-      plt.imshow(attn_matrix, interpolation='nearest')
-      plt.show()
 
-      print(products)
+      with open('attn_'+products+'.pkl', 'w') as f:
+        cPickle.dump(attn_matrix, f, 2)
+      
       print("> ", end="")
       sys.stdout.flush()
       rsmi = sys.stdin.readline()

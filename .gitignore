@@ -8,4 +8,5 @@ gen_rxn(test)/
 paper/
 
 *.pkl.gz
+*.pkl
 *.pyc
