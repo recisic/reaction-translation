@@ -1,0 +1,172 @@
+[
+    {
+        "aromatic": "false",
+        "charge": "null",
+        "chiralClass": "null",
+        "hydrogens": "null",
+        "isotope": "null",
+        "klass": 0,
+        "symbol": "C",
+        "type": "atom"
+    },
+    {
+        "aromatic": "false",
+        "charge": "null",
+        "chiralClass": "null",
+        "hydrogens": "null",
+        "isotope": "null",
+        "klass": 0,
+        "symbol": "Br",
+        "type": "atom"
+    },
+    {
+        "aromatic": "false",
+        "charge": "null",
+        "chiralClass": "null",
+        "hydrogens": "null",
+        "isotope": "null",
+        "klass": 0,
+        "symbol": "N",
+        "type": "atom"
+    },
+    {
+        "index": 1,
+        "type": "ring-closure"
+    },
+    {
+        "aromatic": "false",
+        "charge": "null",
+        "chiralClass": "null",
+        "hydrogens": "null",
+        "isotope": "null",
+        "klass": 0,
+        "symbol": "C",
+        "type": "atom"
+    },
+    {
+        "index": 77,
+        "type": "ring-closure"
+    },
+    {
+        "aromatic": "false",
+        "charge": "null",
+        "chiralClass": "null",
+        "hydrogens": "null",
+        "isotope": "null",
+        "klass": 0,
+        "symbol": "C",
+        "type": "atom"
+    },
+    {
+        "type": "open-branch"
+    },
+    {
+        "aromatic": "false",
+        "charge": "null",
+        "chiralClass": "null",
+        "hydrogens": "null",
+        "isotope": "null",
+        "klass": 0,
+        "symbol": "C",
+        "type": "atom"
+    },
+    {
+        "index": 77,
+        "type": "ring-closure"
+    },
+    {
+        "aromatic": "true",
+        "charge": "--",
+        "chiralClass": "@TB9",
+        "hydrogens": 2,
+        "isotope": 13,
+        "klass": 45,
+        "symbol": "c",
+        "type": "atom"
+    },
+    {
+        "index": 1,
+        "type": "ring-closure"
+    },
+    {
+        "aromatic": "false",
+        "charge": "null",
+        "chiralClass": "null",
+        "hydrogens": "null",
+        "isotope": "null",
+        "klass": 0,
+        "symbol": "*",
+        "type": "atom"
+    },
+    {
+        "aromatic": "true",
+        "charge": "null",
+        "chiralClass": "null",
+        "hydrogens": "null",
+        "isotope": "null",
+        "klass": 0,
+        "symbol": "c",
+        "type": "atom"
+    },
+    {
+        "index": 2,
+        "type": "ring-closure"
+    },
+    {
+        "type": "close-branch"
+    },
+    {
+        "aromatic": "true",
+        "charge": "null",
+        "chiralClass": "null",
+        "hydrogens": "null",
+        "isotope": "null",
+        "klass": 0,
+        "symbol": "c",
+        "type": "atom"
+    },
+    {
+        "aromatic": "true",
+        "charge": "null",
+        "chiralClass": "null",
+        "hydrogens": "null",
+        "isotope": "null",
+        "klass": 0,
+        "symbol": "c",
+        "type": "atom"
+    },
+    {
+        "aromatic": "true",
+        "charge": "null",
+        "chiralClass": "null",
+        "hydrogens": "null",
+        "isotope": "null",
+        "klass": 0,
+        "symbol": "c",
+        "type": "atom"
+    },
+    {
+        "aromatic": "true",
+        "charge": "null",
+        "chiralClass": "null",
+        "hydrogens": "null",
+        "isotope": "null",
+        "klass": 0,
+        "symbol": "n",
+        "type": "atom"
+    },
+    {
+        "aromatic": "true",
+        "charge": "null",
+        "chiralClass": "null",
+        "hydrogens": "null",
+        "isotope": "null",
+        "klass": 0,
+        "symbol": "c",
+        "type": "atom"
+    },
+    {
+        "index": 2,
+        "type": "ring-closure"
+    }
+]
