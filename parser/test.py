@@ -11,6 +11,8 @@ print((Smipar.parser_json(test_string1)))
 # parse to list test
 print(('---TEST2---'))
 print((Smipar.parser_list(test_string2)))
+parsed_joined = ''.join(Smipar.parser_list(test_string2))
 print('test smiles string:', test_string2)
-print('parsed-joined result:', ''.join(Smipar.parser_list(test_string2)))
-print('(should be same)')
+print('parsed-joined result:', parsed_joined)
+assert test_string2 == parsed_joined
+print('same result')
