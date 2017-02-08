@@ -1,0 +1,11 @@
+c1ccccc1.CC(C)(C)Br>[Al+3].[Cl-].[Cl-].[Cl-]>CC(C)(C)c1ccccc1
+c1ccccc1.CCCCCl>[Al+3].[Cl-].[Cl-].[Cl-]>CCC(C)c1ccccc1
+c1ccccc1.CC(C)CO>FB(F)F>CC(C)(C)c1ccccc1
+c1ccccc1.BrBr>[Fe]>Brc1ccccc1
+c1ccccc1.CC(C)=C>F>CC(C)(C)c1ccccc1
+c1ccccc1.O=S(=O)=O>OS(O)(=O)=O>OS(=O)(=O)c1ccccc1
+c1ccccc1.CC(C)(C)CCl>[Al+3].[Cl-].[Cl-].[Cl-]>CCC(C)(C)c1ccccc1
+c1ccccc1.ClC(=O)c1ccccc1>[Al+3].[Cl-].[Cl-].[Cl-]>O=C(c1ccccc1)c1ccccc1
+c1ccccc1.II>O[N+]([O-])=O>Ic1ccccc1
+c1ccccc1.O[N+]([O-])=O>OS(O)(=O)=O>[O-][N+](=O)c1ccccc1
+c1ccccc1.[C-]#[O+]>[Al+3].[Cu+].[Cl-].[Cl-].[Cl-].Cl.[Cl-]>O=Cc1ccccc1

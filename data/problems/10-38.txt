@@ -1,0 +1,15 @@
+[Mg+]C1CCCCC1.[Br-].C=O>>OCC1CCCCC1
+[Mg+]C1CCCC1.[Cl-].CCCC(C)=O>>CCCC(C)(O)C1CCCC1
+CC(C)[Mg+].[I-].[H]C(=O)c1ccccc1>>CC(C)C(O)c1ccccc1
+C[Mg+].[I-].OC1CCCC(=O)C1>>CC1(O)CCCC(O)C1
+[H]C(=O)C1CCCC1>[Na+].[BH4-]>OCC1CCCC1
+[Mg+]c1ccccc1.[Br-].O=C(c1ccccc1)c1ccccc1>>OC(c1ccccc1)(c1ccccc1)c1ccccc1
+[Mg+]c1ccccc1.[Br-].COC(=O)C1CCCC1>>OC(C1CCCC1)(c1ccccc1)c1ccccc1
+[Mg+]CC1CCCC1.[Cl-].ClC(=O)c1ccccc1>>OC(CC1CCCC1)(CC1CCCC1)c1ccccc1
+COC(=O)CC1CCCC(=O)C1>[Na+].[BH4-]>COC(=O)CC1CCCC(O)C1
+COC(=O)CC1CCCC(=O)C1>[Al+3].[H-].[H-].[H-].[H-].[Li+]>OCCC1CCCC(O)C1
+C1CCC2=CCCCC2C1.O>CC(=O)O[Hg]OC(C)=O.[BH4-].[Na+]>OC12CCCCC1CCCC2
+C1CCC2=CCCCC2C1.O>B.C1CCOC1.OO.[Na+].[OH-]>OC1CCCC2CCCCC12
+CCC\C=C\C>[O-][Mn](=O)(=O)=O.[K+].[Na+].[OH-]>CCCC(O)C(C)O
+CCC\C=C\C>[H]C(=O)OO.Cl>CCCC(O)C(C)O
+CC[Cu-]CC.[Li+].CC\C=C\CBr>>CC\C=C\CC=C

@@ -1,0 +1,7 @@
+CCC(C)(Br)Br>[Na+].[NH2-]>CCC#C
+CCC(C)(Br)Br>[K+].[OH-]>CC#CC
+CCC#C.CCCCBr>[Na+].[NH2-]>CCCCC#CCC
+C1CCCCC#CCCC1.[H][H]>c1ccc2ncccc2c1.[Pd].[Ba++].[O-]S([O-])(=O)=O>C1CCCCC=CCCC1
+C1CCCCC#CCCC1>N.[Na]>C1CCCCC=CCCC1
+CCCCC#C>CC(C)C(C)BC(C)C(C)C.OO.[Na+].[OH-]>CCCCCC=O
+CCCC#C.[H][H]>c1ccc2ncccc2c1.[Pd].[Ba++].[O-]S([O-])(=O)=O>CCCC=C

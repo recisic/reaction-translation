@@ -1,0 +1,8 @@
+CCCC#C.Cl>>CCCC(C)(Cl)Cl
+CCCC#C.[H][H]>[Ni]>CCCCC
+CCCC#C.BrBr>>CCCC(Br)(Br)C(Br)Br
+CCCC#C>[K+].[O-][Mn](=O)(=O)=O>CCCC(=O)C(O)=O
+CCCC#C>[Na+].[K+].[OH-].[O-][Mn](=O)(=O)=O>CCCC(O)=O
+CCCC#C>N.[Na]>C=CCCC
+CCCC#C.O>[Hg++].OS(O)(=O)=O.[O-]S([O-])(=O)=O>CCCC(C)=O
+CCCC#C.O>CC(C)C(C)BC(C)C(C)C.[OH-].[Na+].OO>CCCCC=O

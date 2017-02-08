@@ -1,0 +1,12 @@
+CCC(C)O.Cc1ccc(cc1)S(Cl)(=O)=O>c1ccncc1>CCC(C)OS(=O)(=O)c1ccc(C)cc1
+CCC(C)OS(=O)(=O)c1ccc(C)cc1.[Na+].[Br-]>>CCC(C)Br
+OC1CCCCCCC1>OS(O)(=O)=O.O=[Cr](=O)=O>O=C1CCCCCCC1
+OCC1CCCC1>[O-][Cr](Cl)(=O)=O.c1cc[nH+]cc1>O=CC1CCCC1
+OCC1CCCC1>OS(O)(=O)=O.[O-][Cr](=O)(=O)O[Cr]([O-])(=O)=O.[Na+].[Na+]>OC(=O)C1CCCC1
+OC1CCCC1.Cl>[Zn++].[Cl-].[Cl-]>ClC1CCCC1
+CCCCO.Br>>CCCCBr
+CC(C)(C)[O-].[K+].CI>>COC(C)(C)C
+[Na+].C[O-].CC(C)(C)I>>CO.CC(C)=C
+OC1CCCC1>OS(O)(=O)=O>C1CC=CC1
+C1CC=CC1>O=[Os](=O)(=O)=O.O[I](=O)(=O)=O.O>[H]C(=O)CCCC([H])=O
+CC[O-].[Na+].CCCCBr>CCO>CCCCOCC
