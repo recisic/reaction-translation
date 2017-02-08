@@ -2,6 +2,8 @@
 
 Translating 'reagents and reactants' to 'products'.
 
+![Model Image](https://github.com/recisic/reaction-translation/blob/master/Fig1-300.png)
+
 ## Paper
 
 [ArXiv] [Linking the Neural Machine Translation and the Prediction of Organic Chemistry Reactions](http://arxiv.org/abs/1612.09529)
